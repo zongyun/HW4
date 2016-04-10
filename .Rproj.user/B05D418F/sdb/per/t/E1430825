@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "\n\nif (!require('Rfacebook')){\n    install.packages(\"Rfacebook\")\n    library(Rfacebook)\n}\ntoken<-'CAACEdEose0cBAAQZBgmuZBTZCcAvNmgydx0puEPlg8fNWkbtXfWcZA511PjOBsThFILwysBqoIZAZC00UfbNIvqJikzcUfNRkyoZBXiBSaNiikg23txunMdVVTRLQbZBzFvTaBXpivR4RM28zwgFnq0FWPOKtbGBusiaY6ZAQTZCgBlYIx6f4yKN4VSXLUrwiiRQsSyjsdx42TTgZDZD'\ntotalPage<-NULL\nlastDate<-Sys.Date()\nDateVectorStr<-as.character(seq(as.Date(\"2016-01-01\"),lastDate,by=\"7 days\"))\nfor(i in 1:(length(DateVectorStr)-1)){\n    tempPage<-getPage(\"DoctorKoWJ\", token,\n                      since = DateVectorStr[i],until = DateVectorStr[i+1])\n    totalPage<-rbind(totalPage,tempPage)\n}\nnrow(totalPage)\n\n#每日發文數分析\ntotalPage$datetime <- as.POSIXct(totalPage$created_time, \n                                 format = \"%Y-%m-%dT%H:%M:%S+0000\", \n                                 tz = \"GMT\") #2016-01-16T15:05:36+0000\ntotalPage$dateTPE <- format(totalPage$datetime, \"%Y-%m-%d\", \n                            tz = \"Asia/Taipei\") #2016-01-16\ntotalPage$weekdays <-weekdays(as.Date(totalPage$dateTPE))\nPostCount<-aggregate(id~dateTPE,totalPage,length)\nlibrary(knitr)\nkable(head(PostCount[order(PostCount$id,decreasing = T),]))\n\nLikeCount<-aggregate(likes_count~dateTPE,totalPage,mean)\nlibrary(knitr)\nkable(head(LikeCount[order(LikeCount$likes_count,decreasing = T),]))\n\n\ntotalPage$datetime <- as.POSIXct(totalPage$created_time, \n                                 format = \"%Y-%m-%dT%H:%M:%S+0000\", \n                                 tz = \"GMT\") #2016-01-16T15:05:36+0000\ntotalPage$dateTPE <- format(totalPage$datetime, \"%Y-%m-%d\", \n                            tz = \"Asia/Taipei\") #2016-01-16\ntotalPage$weekdays <-weekdays(as.Date(totalPage$dateTPE))\nPostCount<-aggregate(id~dateTPE,totalPage,length)\nlibrary(knitr)\nkable(head(PostCount[order(PostCount$id,decreasing = T),]))\n\nLikeCount<-aggregate(likes_count~dateTPE,totalPage,mean)\nlibrary(knitr)\nkable(head(LikeCount[order(LikeCount$likes_count,decreasing = T),]))\n\n\ntotalPage$datetime <- as.POSIXct(totalPage$created_time, \n                                 format = \"%Y-%m-%dT%H:%M:%S+0000\", \n                                 tz = \"GMT\") #2016-01-16T15:05:36+0000\ntotalPage$dateTPE <- format(totalPage$datetime, \"%Y-%m-%d\", \n                            tz = \"Asia/Taipei\") #2016-01-16\ntotalPage$weekdays <-weekdays(as.Date(totalPage$dateTPE))\nPostCount<-aggregate(id~dateTPE,totalPage,length)\nlibrary(knitr)\nkable(head(PostCount[order(PostCount$id,decreasing = T),]))\n\nCommentsCount<-aggregate(comments_count~dateTPE,totalPage,mean)\nlibrary(knitr)\nkable(head(CommentsCount[order(CommenysCount$comments_count,decreasing = T),]))\n\n\n\ntotalPage$datetime <- as.POSIXct(totalPage$created_time, \n                                 format = \"%Y-%m-%dT%H:%M:%S+0000\", \n                                 tz = \"GMT\") #2016-01-16T15:05:36+0000\ntotalPage$dateTPE <- format(totalPage$datetime, \"%Y-%m-%d\", \n                            tz = \"Asia/Taipei\") #2016-01-16\ntotalPage$weekdays <-weekdays(as.Date(totalPage$dateTPE))\nPostCount<-aggregate(id~dateTPE,totalPage,length)\nlibrary(knitr)\nkable(head(PostCount[order(PostCount$id,decreasing = T),]))\n\nSharesCount<-aggregate(shares_count~dateTPE,totalPage,mean)\nlibrary(knitr)\nkable(head(SharesCount[order(SharesCount$shares_count,decreasing = T),]))\n\n",
+    "created" : 1460302893535.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4150600191",
+    "id" : "E1430825",
+    "lastKnownWriteTime" : 1460303006,
+    "last_content_update" : 1460303006029,
+    "path" : "C:/Users/user/Desktop/HW4/HW4.R",
+    "project_path" : "HW4.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
